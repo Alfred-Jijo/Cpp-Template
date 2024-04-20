@@ -14,16 +14,15 @@ pub fn build(b: *std.Build) void {
     exe.root_module.addCSourceFiles(.{
         .root = b.path(""),
         .files = &[_][]const u8{
-            "src/main.c",
-            "lib/ds.c",
+            "src/main.cpp", 
+            "lib/ds.c"
         },
         .flags = &[_][]const u8{
             "-Wall",
             "-Wextra",
             "-Werror",
             "-pedantic",
-            "-Wno-unused-parameter",
-            "-std=c99",
+            "-std=c++11", 
         },
     });
     b.installArtifact(exe);

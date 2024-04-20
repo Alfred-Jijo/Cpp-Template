@@ -1,27 +1,36 @@
+# Makefile for C++ Template Project
+
+# Variables
 NAME = template
 VERSION = 0.0.0
 PREFIX ?= $(HOME)/.local
 
-CC ?= cc
-CFLAGS = -Wall -Wextra -Werror -pedantic -Wno-unused-parameter -std=c99
+CPP ?= g++
+CPPFLAGS = -Wall -Wextra -Werror -pedantic -std=c++11
 
-SRC = lib/ds.c src/main.c
-OBJ = $(SRC:%.c=%.o)
+SRC = src/main.cpp lib/ds.cpp
+OBJ = $(SRC:%.cpp=%.o)
 INCLUDE = -Iinclude
 
+# Default target
 all: $(NAME)
 
+# Compile target
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME) $(CFLAGS) $(INCLUDE)
+	$(CPP) $(OBJ) -o $(NAME) $(CPPFLAGS) $(INCLUDE)
 
-.c.o:
-	$(CC) -c $< -o $@ $(CFLAGS) $(INCLUDE)
+# Rule to compile source files
+.cpp.o:
+	$(CPP) -c $< -o $@ $(CPPFLAGS) $(INCLUDE)
 
+# Run target
 run: $(NAME)
 	./$(NAME)
 
+# Clean target
 clean:
 	$(RM) $(OBJ)
 	$(RM) $(NAME)
 
-.PHONY: all clean
+# Phony targets
+.PHONY: all run clean

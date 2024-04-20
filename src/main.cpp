@@ -1,8 +1,8 @@
 #include <typedef.h>
 #include <stb_ds.h>
-#include <stdio.h>
+#include <iostream>
 
 int main(void) {
-	printf("Hello, World!\n");
+	std::cout << "Hello, World!" << std::endl;
 	return 0;
 }
