@@ -6,7 +6,7 @@ VERSION = 0.0.0
 PREFIX ?= $(HOME)/.local
 
 CXX ?= g++
-CXXFLAGS = -Wall -Wextra -Werror -pedantic -std=c++11
+CXXFLAGS = -Wall -Wextra -Werror -pedantic -std=c++20
 
 CC ?= gcc
 CFLAGS = -Wall -Wextra -Werror -pedantic -std=c99

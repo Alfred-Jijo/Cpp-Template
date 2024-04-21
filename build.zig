@@ -23,7 +23,7 @@ pub fn build(b: *std.Build) void {
             "-Wextra",
             "-Werror",
             "-pedantic",
-            "-std=c++11",
+            "-std=c++20",
         },
     });
     // c99 source files
