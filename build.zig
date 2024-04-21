@@ -10,19 +10,34 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
         .link_libc = true,
     });
+    exe.linkLibCpp();
     exe.root_module.addIncludePath(b.path("include"));
+    // cpp11 source files
     exe.root_module.addCSourceFiles(.{
         .root = b.path(""),
         .files = &[_][]const u8{
-            "src/main.cpp", 
-            "lib/ds.c"
+            "src/main.cpp",
         },
         .flags = &[_][]const u8{
             "-Wall",
             "-Wextra",
             "-Werror",
             "-pedantic",
-            "-std=c++11", 
+            "-std=c++11",
+        },
+    });
+    // c99 source files
+    exe.root_module.addCSourceFiles(.{
+        .root = b.path(""),
+        .files = &[_][]const u8{
+            "lib/ds.c",
+        },
+        .flags = &[_][]const u8{
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-pedantic",
+            "-std=c99",
         },
     });
     b.installArtifact(exe);

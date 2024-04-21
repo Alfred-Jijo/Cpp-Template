@@ -5,11 +5,15 @@ NAME = template
 VERSION = 0.0.0
 PREFIX ?= $(HOME)/.local
 
-CPP ?= g++
-CPPFLAGS = -Wall -Wextra -Werror -pedantic -std=c++11
+CXX ?= g++
+CXXFLAGS = -Wall -Wextra -Werror -pedantic -std=c++11
 
-SRC = src/main.cpp lib/ds.cpp
-OBJ = $(SRC:%.cpp=%.o)
+CC ?= gcc
+CFLAGS = -Wall -Wextra -Werror -pedantic -std=c99
+
+CXXSRC = src/main.cpp
+CSRC = lib/ds.c
+OBJ = $(CXXSRC:%.cpp=%.o) $(CSRC:%.c=%.o)
 INCLUDE = -Iinclude
 
 # Default target
@@ -17,11 +21,14 @@ all: $(NAME)
 
 # Compile target
 $(NAME): $(OBJ)
-	$(CPP) $(OBJ) -o $(NAME) $(CPPFLAGS) $(INCLUDE)
+	$(CXX) $(OBJ) -o $(NAME)
 
 # Rule to compile source files
 .cpp.o:
-	$(CPP) -c $< -o $@ $(CPPFLAGS) $(INCLUDE)
+	$(CXX) -c $< -o $@ $(CXXFLAGS) $(INCLUDE)
+
+.c.o:
+	$(CC) -c $< -o $@ $(CFLAGS) $(INCLUDE)
 
 # Run target
 run: $(NAME)
