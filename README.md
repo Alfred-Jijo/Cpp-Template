@@ -1,2 +1,2 @@
-# C-Template
-Template for c projects with typedefs
+# c/c++-Template
+Template for c/c++ projects with typedefs
